@@ -25,6 +25,14 @@ public class RegistrationRestController {
 
             JsonObjectBuilder payload = Json.createObjectBuilder();
 
+            if(name.trim().toLowerCase().startsWith("justin")){
+                payload.add("message",
+                        "Unfortunately for you, you name begins with justin");
+                        return ResponseEntity
+                            .status(HttpStatus.BAD_REQUEST)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(payload.build().toString());
+            }
             payload.add("message",
             "%s, you have been registered".formatted(name));
             return ResponseEntity
